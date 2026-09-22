@@ -32,14 +32,15 @@ function prepareMaterials(model, female) {
       if (name.includes('head') || name.includes('body')) {
         const skin = new THREE.MeshPhysicalMaterial();
         THREE.MeshStandardMaterial.prototype.copy.call(skin, material);
-        skin.roughness = .52; skin.metalness = 0;
+        skin.roughness = .85; skin.metalness = 0;
         skin.sheen = .16; skin.sheenColor.set('#ba8b7b'); skin.sheenRoughness = .85;
         skin.specularIntensity = .36;
         if (skin.normalMap) skin.normalScale.set(.5, .5);
         obj.material = skin;
       } else if (name.includes('cornea')) {
-        material.transparent = true; material.opacity = .17;
-        material.roughness = .06; material.depthWrite = false;
+        // This asset's cornea is a photographed eye patch, not a clear glass shell.
+        material.transparent = true; material.opacity = 1;
+        material.roughness = .38; material.depthWrite = false;
         obj.material = material;
       } else if (name.includes('eyelashes')) {
         material.transparent = true; material.alphaTest = .35; material.depthWrite = false;
@@ -116,10 +117,28 @@ export function retargetLocomotion(source, target, original, name, heightRatio) 
 
 export async function loadCharacters(manager) {
   const loader = new GLTFLoader(manager);
-  const [female, male] = await Promise.all(CHARACTERS.map(c => loader.loadAsync(c.url)));
+  const [female, male, hair] = await Promise.all([
+    ...CHARACTERS.map(c => loader.loadAsync(c.url)), loader.loadAsync('/assets/TravelerHair.glb'),
+  ]);
   const library = new Map();
   fit(male.scene, 1.8); fit(female.scene, 1.69);
   prepareMaterials(male.scene, false); prepareMaterials(female.scene, true);
+  hair.scene.traverse(mesh => {
+    if (!mesh.isMesh) return;
+    mesh.material = mesh.material.clone();
+    mesh.material.roughness = .85; mesh.material.metalness = 0;
+    mesh.material.aoMap = null; mesh.material.normalScale.set(.35, .35);
+    mesh.material.side = THREE.DoubleSide; mesh.material.alphaTest = .45;
+    mesh.material.transparent = false;
+    mesh.castShadow = mesh.receiveShadow = true; mesh.frustumCulled = false;
+  });
+  hair.scene.scale.setScalar(1.025);
+  const strands = hair.scene.children[0].clone();
+  strands.material = strands.material.clone(); strands.material.transparent = true;
+  strands.material.alphaTest = .03; strands.material.depthWrite = false;
+  strands.material.opacity = .7; strands.castShadow = false;
+  hair.scene.add(strands);
+  female.scene.getObjectByName('Head').add(hair.scene);
   const femaleClips = [];
   for (const [name, sourceName] of Object.entries(CLIP_NAMES)) {
     const original = male.animations.find(c => c.name === sourceName);
@@ -139,7 +158,24 @@ export async function loadCharacters(manager) {
         actions[clip.name] = action;
       }
       mixer.update(0);
-      return { model, mixer, actions };
+      const eyelids = [];
+      model.traverse(mesh => {
+        if (mesh.morphTargetDictionary?.eyeBlinkLeft !== undefined) eyelids.push(mesh);
+      });
+      let elapsed = 0, nextBlink = 2.7;
+      return {
+        model, mixer, actions,
+        update(dt) {
+          mixer.update(dt); elapsed += dt;
+          const phase = elapsed - nextBlink;
+          const blink = phase >= 0 && phase < .2 ? Math.sin(phase / .2 * Math.PI) : 0;
+          for (const mesh of eyelids) {
+            mesh.morphTargetInfluences[mesh.morphTargetDictionary.eyeBlinkLeft] = blink;
+            mesh.morphTargetInfluences[mesh.morphTargetDictionary.eyeBlinkRight] = blink;
+          }
+          if (phase >= .2) nextBlink = elapsed + 3.1 + Math.sin(elapsed * 2) * .8;
+        },
+      };
     },
   };
 }

@@ -11,3 +11,6 @@
 | LITORAL — 바다 곁을 걷다, 3인칭 탐험 게임 | `03-litoral/` | `npm run dev:03` → http://127.0.0.1:5175 |
 
 루트에서 `npm run dev`를 실행하면 세 번째 작품을 엽니다. 개별 폴더에서도 `npm install`, `npm run dev`, `npm run build`를 사용할 수 있습니다.
+
+세 번째 작품은 여성 SOFIA가 기본입니다. 시작 화면의 **함께 걸을 사람**에서 여성·남성을
+선택하고, 얼굴을 확대하거나 전신을 회전해서 확인할 수 있습니다. [조작법과 실행 안내](03-litoral/README.md)

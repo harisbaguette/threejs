@@ -108,6 +108,7 @@ dialog .primary-button { width: 100%; margin-bottom: 25px; }
 #error button { background: var(--paper); color: var(--ink); border: 0; padding: 12px 24px; min-height: 44px; }
 .character-dialog { width: min(940px, calc(100% - 44px)); padding: 0; overflow: hidden; }
 .character-dialog[open] { display: grid; grid-template-columns: 38% 62%; }
+.character-dialog > form { position: absolute; top: 0; right: 0; width: 48px; height: 48px; z-index: 3; }
 .character-dialog .close-button { z-index: 3; }
 .character-sidebar { padding: 55px 32px 28px; display: flex; flex-direction: column; }
 .character-sidebar .eyebrow { font-size: 8px; letter-spacing: .18em; color: var(--accent); }

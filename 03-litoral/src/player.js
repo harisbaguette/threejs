@@ -25,7 +25,7 @@ export async function createPlayer(scene, manager, position = { x: 0, z: 33 }, c
     const npc = library.create(i === 1 ? 'female' : 'male');
     const group = new THREE.Group(); group.add(npc.model); group.position.set(route.x, GROUND_Y, route.start); scene.add(group);
     npc.actions.Idle.setEffectiveWeight(0); npc.actions.Walk.setEffectiveWeight(1);
-    return { ...route, actor: group, animation: npc.mixer };
+    return { ...route, actor: group, animation: npc };
   });
   const state = { character: actors.has(characterId) ? characterId : 'female', x: position.x, y: GROUND_Y, z: position.z, velocityY: 0, grounded: true, stamina: 1, speed: 0, distance: 0, running: false, exhausted: false };
   const desired = new THREE.Vector3();
@@ -86,13 +86,13 @@ export async function createPlayer(scene, manager, position = { x: 0, z: 33 }, c
         pivot.rotation.y += delta * (1 - Math.exp(-13 * dt));
       }
       const name = !state.grounded ? 'Jump' : state.speed < .15 ? 'Idle' : running ? 'Run' : 'Walk';
-      const { actions, mixer } = current;
+      const { actions } = current;
       for (const [key, action] of Object.entries(actions)) {
         action.setEffectiveWeight(THREE.MathUtils.lerp(action.getEffectiveWeight(), key === name ? 1 : 0, 1 - Math.exp(-9 * dt)));
       }
       actions.Walk.timeScale = Math.max(.5, state.speed / 2.6);
       actions.Run.timeScale = Math.max(.5, state.speed / 5.7);
-      mixer.update(dt * (state.grounded ? 1 : .4));
+      current.update(dt * (state.grounded ? 1 : .4));
       shadow.position.set(state.x, .105, state.z);
       shadow.material.opacity = Math.max(.12, 1 - (state.y - GROUND_Y) * .6);
     },

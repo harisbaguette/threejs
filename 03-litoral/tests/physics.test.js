@@ -29,5 +29,12 @@ test('corrupt or out-of-bounds saved games safely recover', () => {
   assert.equal(validSave(null, ['harbor']), null);
   assert.equal(validSave({ version: 2, found: [] }, ['harbor']), null);
   const save = validSave({ version: 1, found: ['harbor', 'harbor', 'fake'], position: { x: -500, z: 9 } }, ['harbor']);
-  assert.deepEqual(save, { found: ['harbor'], position: { x: 0, z: 33 } });
+  assert.deepEqual(save, { found: ['harbor'], position: { x: 0, z: 33 }, character: 'female' });
+});
+test('character choice survives save validation and older saves default to female', () => {
+  const save = { version: 1, found: ['harbor'], position: { x: 0, z: 33 } };
+  assert.equal(validSave({ ...save, character: 'male' }, ['harbor']).character, 'male');
+  assert.equal(validSave({ ...save, character: 'female' }, ['harbor']).character, 'female');
+  assert.equal(validSave({ ...save, character: 'unknown' }, ['harbor']).character, 'female');
+  assert.equal(validSave(save, ['harbor']).character, 'female');
 });
