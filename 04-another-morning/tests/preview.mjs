@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:900}});
+page.on('pageerror',e=>console.log('ERROR',e.message));
+await page.goto('http://127.0.0.1:5176/?test');
+await page.waitForSelector('[data-ready="true"]',{timeout:120000});
+await page.click('#start');await page.evaluate(()=>window.__morning.goTo('possess'));await page.keyboard.press('e');
+await page.waitForFunction(()=>window.__morning.state.character==='female'&&window.__morning.state.mode==='experience');
+await page.screenshot({path:'test-results/new-hands.png'});await page.keyboard.press('Escape');await page.evaluate(()=>window.__morning.goTo('mirror'));await page.keyboard.press('e');await page.waitForTimeout(400);
+await page.screenshot({path:'test-results/new-full.png'});
+await page.click('[data-mirror="face"]');await page.waitForTimeout(400);
+await page.screenshot({path:'test-results/new-face.png'});
+await browser.close();

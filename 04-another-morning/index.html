@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1c1917" />
+  <title>타인의 아침 — Another Morning</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <canvas id="scene" aria-label="아파트 안을 탐험하는 3D 게임"></canvas>
+  <div id="vignette" aria-hidden="true"></div>
+  <main id="intro">
+    <div class="intro-content">
+      <p class="eyebrow">ANOTHER MORNING</p>
+      <h1>타인의<br /><span>아침</span></h1>
+      <p class="intro-line">거울 속의 그녀가, 내가 되었다.</p>
+      <p class="intro-description">남성으로 시작해 서연의 몸에 깨어나세요.<br />낯선 모습으로 맞이하는, 아주 평범한 하루.</p>
+      <div class="start-actions">
+        <button id="start" class="primary" disabled>공간을 준비하는 중…</button>
+        <button id="continue" class="text-button" hidden>지난 아침 이어하기 →</button>
+      </div>
+      <p id="loading" role="status">빛과 공간을 불러옵니다.</p>
+    </div>
+    <div class="intro-footer"><span>SEOUL · 09:14 AM</span><a href="/assets/Alina.LICENSE.txt" target="_blank" rel="noopener" style="color:inherit">3D 인물: Jungle Jim · CC BY 4.0</a></div>
+  </main>
+
+  <div id="hud" hidden>
+    <header>
+      <div class="identity-panel">
+        <p class="eyebrow" id="chapter">01 / 낯선 아침</p>
+        <div class="identity"><span id="identity-name">도윤</span><span id="identity-role">남성 · 29세</span></div>
+        <p id="objective">서연에게 다가가 빙의하기</p>
+      </div>
+      <nav aria-label="게임 메뉴">
+        <button id="body-inspect" title="B: 바뀐 손과 몸 확인">내 모습</button>
+        <button id="view" title="V: 시점 전환">1인칭</button>
+        <button id="journal" title="J: 오늘의 기록">기록 <span id="progress">0/5</span></button>
+        <button id="pause" title="Esc: 일시정지" aria-label="일시정지">Ⅱ</button>
+      </nav>
+    </header>
+    <div id="waypoint" aria-hidden="true"><span class="diamond"></span><span id="waypoint-label">서연</span></div>
+    <div id="crosshair" hidden aria-hidden="true"></div>
+    <div id="subtitle" role="status" aria-live="polite" hidden></div>
+    <div id="interaction" hidden>
+      <span id="object-name"></span>
+      <button id="interact"><kbd>E</kbd><span id="action-name">빙의하기</span><span aria-hidden="true">↗</span></button>
+    </div>
+    <footer class="controls"><span><kbd>W A S D</kbd> 이동</span><span>드래그 시점</span><span><kbd>E</kbd> 상호작용</span><span><kbd>V</kbd> 시점</span><span><kbd>P</kbd> 사진</span></footer>
+    <div id="mobile-controls">
+      <div id="dpad" aria-label="이동 버튼">
+        <button data-move="w" aria-label="앞으로 이동">↑</button>
+        <button data-move="a" aria-label="왼쪽으로 이동">←</button>
+        <button data-move="s" aria-label="뒤로 이동">↓</button>
+        <button data-move="d" aria-label="오른쪽으로 이동">→</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mirror-ui" hidden>
+    <p class="eyebrow">거울 속의 나</p>
+    <div class="mirror-actions">
+      <button data-mirror="full" aria-pressed="true">전신</button>
+      <button data-mirror="face" aria-pressed="false">얼굴</button>
+      <button id="smile">미소 짓기</button>
+      <button id="turn-pose">옆모습 보기</button>
+      <button id="mirror-close">돌아가기 <kbd>Esc</kbd></button>
+    </div>
+  </div>
+  <div id="experience-ui" hidden><p id="experience-title"></p><button id="experience-close">돌아가기 <kbd>Esc</kbd></button></div>
+
+  <dialog id="panel" aria-labelledby="panel-title">
+    <button id="panel-close" class="close" aria-label="닫기">×</button>
+    <p class="eyebrow" id="panel-kicker"></p>
+    <h2 id="panel-title"></h2>
+    <div id="panel-body"></div>
+  </dialog>
+  <div id="transition" aria-hidden="true"><p>익숙한 내가, 조금씩 멀어진다.</p></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

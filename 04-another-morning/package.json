@@ -1,0 +1,21 @@
+{
+  "name": "another-morning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5176 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4176",
+    "test": "node --test tests/state.test.js",
+    "test:e2e": "node tests/browser.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.0",
+    "threejs-studies": "file:.."
+  },
+  "devDependencies": {
+    "playwright": "1.58.2",
+    "vite": "7.3.6"
+  }
+}

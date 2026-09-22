@@ -2,11 +2,14 @@
   "name": "threejs-studies",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix 03-litoral run dev",
+    "dev": "npm --prefix 04-another-morning run dev",
     "dev:01": "npm --prefix 01-slow-rail run dev -- --port 5173",
     "dev:02": "npm --prefix 02-shiosai run dev -- --port 5174",
     "dev:03": "npm --prefix 03-litoral run dev",
+    "dev:04": "npm --prefix 04-another-morning run dev",
     "build:03": "npm --prefix 03-litoral run build",
-    "build": "npm --prefix 01-slow-rail run build && npm --prefix 02-shiosai run build && npm --prefix 03-litoral run build"
+    "build:04": "npm --prefix 04-another-morning run build",
+    "test:04": "npm --prefix 04-another-morning test",
+    "build": "npm --prefix 01-slow-rail run build && npm --prefix 02-shiosai run build && npm --prefix 03-litoral run build && npm --prefix 04-another-morning run build"
   }
 }
