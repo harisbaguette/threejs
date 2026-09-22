@@ -47,5 +47,47 @@
     "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_02/concrete_floor_02_rough_1k.jpg",
     "license": "CC0-1.0",
     "sha256": "c7f026a611b7859903c61ec7fd4574944157223e9e7796413dd6e2a66eaeac7a"
+  },
+  {
+    "file": "gravel_stones_diff_1k.jpg",
+    "source": "https://polyhaven.com/a/gravel_stones",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "b77a4c0824f4c860b9230949baca764fdb0651fa0016b2644cd07490f82fac43"
+  },
+  {
+    "file": "gravel_stones_nor_gl_1k.jpg",
+    "source": "https://polyhaven.com/a/gravel_stones",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "49b4a592f021e7eb44f1638be5309ef6f0c3c8a51e7c857ffb54dc4836a8a070"
+  },
+  {
+    "file": "gravel_stones_rough_1k.jpg",
+    "source": "https://polyhaven.com/a/gravel_stones",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "874b326f617f4ce59b3522871482dfc569d37624d1948f521a46d7668bdef950"
+  },
+  {
+    "file": "wood_planks_diff_1k.jpg",
+    "source": "https://polyhaven.com/a/wood_planks",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks/wood_planks_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "3b0669f683e4bf10f5a55a381cfa9669a7b8dfd921901829daa3b35acc2bbdec"
+  },
+  {
+    "file": "wood_planks_nor_gl_1k.jpg",
+    "source": "https://polyhaven.com/a/wood_planks",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks/wood_planks_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "d02abf113e17a8abe97e1be3e9d6d88add242e8c2291e2200d37aa8c68909f25"
+  },
+  {
+    "file": "wood_planks_rough_1k.jpg",
+    "source": "https://polyhaven.com/a/wood_planks",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks/wood_planks_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "sha256": "1b7f115bfa25619b0a2db554eb1ab88a6fc5ef0b74ba4890611eae04d00b9829"
   }
 ]

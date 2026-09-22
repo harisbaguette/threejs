@@ -9,7 +9,7 @@ TARGET = Path(__file__).resolve().parents[1] / 'public' / 'assets'
 ASSETS = [
     ('venice_sunset', 'venice_sunset_1k.hdr', 'HDRIs/hdr/1k/venice_sunset_1k.hdr'),
 ]
-for name in ['asphalt_02', 'concrete_floor_02']:
+for name in ['asphalt_02', 'concrete_floor_02', 'gravel_stones', 'wood_planks']:
     for kind in ['diff', 'nor_gl', 'rough']:
         filename = f'{name}_{kind}_1k.jpg'
         ASSETS.append((name, filename, f'Textures/jpg/1k/{name}/{filename}'))
@@ -17,10 +17,14 @@ for name in ['asphalt_02', 'concrete_floor_02']:
 def download(item):
     asset, name, path = item
     url = 'https://dl.polyhaven.org/file/ph-assets/' + path
-    request = urllib.request.Request(url, headers={'User-Agent': 'ShiosaiThreeJSStudy/1.0'})
-    with urllib.request.urlopen(request, timeout=45) as response:
-        content = response.read()
-    (TARGET / name).write_bytes(content)
+    destination = TARGET / name
+    if destination.exists():
+        content = destination.read_bytes()
+    else:
+        request = urllib.request.Request(url, headers={'User-Agent': 'ShiosaiThreeJSStudy/2.0'})
+        with urllib.request.urlopen(request, timeout=45) as response:
+            content = response.read()
+        destination.write_bytes(content)
     print(name, len(content))
     return {'file': name, 'source': f'https://polyhaven.com/a/{asset}', 'download': url,
             'license': 'CC0-1.0', 'sha256': hashlib.sha256(content).hexdigest()}

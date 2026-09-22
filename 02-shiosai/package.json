@@ -7,9 +7,10 @@
     "dev": "vite --host 127.0.0.1 --port 5174",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4174",
-    "check": "node --check src/main.js && node --check src/world.js && node --check src/station.js && node --check src/train.js && node --check src/environment.js && node --check src/materials.js",
-    "test": "node --test tests/motion.test.js",
+    "check": "node --check src/main.js && node --check src/world.js && node --check src/station.js && node --check src/train.js && node --check src/train-body.js && node --check src/camera.js && node --check src/environment.js && node --check src/materials.js && node --check src/motion.js && node --check src/audio.js",
+    "test": "node --test tests/*.test.js",
     "test:e2e": "node tests/browser.mjs",
+    "test:review": "node tests/review.mjs",
     "export:preview": "node scripts/export-preview.mjs"
   },
   "dependencies": { "three": "0.186.0" },

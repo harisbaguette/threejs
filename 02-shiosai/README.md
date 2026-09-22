@@ -34,9 +34,13 @@ npm run build
 
 모션 감소 설정에서는 풍경이 정지된 상태로 시작합니다. 모바일에는 별도의 카메라 구도를 사용합니다. 사진·영상의 해상도는 현재 캔버스 크기를 따릅니다.
 
+정지 중 영상 저장을 누르면 촬영하는 동안 풍경을 재생하고, 촬영을 마친 뒤 이전 정지 상태로 돌아갑니다. 풍경과 조작이 모두 멈췄을 때는 추가 렌더를 하지 않습니다. 작은 가로 화면도 지원하며 카메라가 지면·전철·처마 안으로 들어가는 것을 제한합니다.
+
 ## 샘플
 
 [해질녘 사진](exports/shiosai-sunset.png) · [푸른 밤 사진](exports/shiosai-blue-hour.png) · [12초 영상](exports/shiosai-preview.mp4)
+
+[첫 버전과 보완 버전 비교](exports/review.html) · [자기비평 및 보완 기록](REVIEW.md)
 
 개발 서버가 켜져 있을 때 `npm run export:preview`로 다시 만들 수 있습니다. 샘플 생성과 `npm run test:e2e`에는 로컬 Chrome이 필요합니다.
 
@@ -53,5 +57,9 @@ Poly Haven의 다음 CC0 소재를 프로젝트에 함께 저장했습니다. �
 | [Venice Sunset](https://polyhaven.com/a/venice_sunset) | HDR 조명과 재질의 환경 반사 |
 | [Asphalt 02](https://polyhaven.com/a/asphalt_02) | 지면·선로 주변과 젖은 바닥 |
 | [Concrete Floor 02](https://polyhaven.com/a/concrete_floor_02) | 승강장 콘크리트 |
+| [Gravel Stones](https://polyhaven.com/a/gravel_stones) | 선로의 자갈 바닥 |
+| [Wood Planks](https://polyhaven.com/a/wood_planks) | 벤치·침목·목조 주택 |
 
 파일별 원본 주소, 라이선스, SHA-256은 [sources.json](public/assets/sources.json)에 있습니다. 재다운로드는 `python3 scripts/fetch-assets.py`로 실행합니다. 모델·하늘·바다·간판·아이콘·환경음은 이 프로젝트의 코드로 구성했습니다.
+
+`npm run test:review`는 카메라 경계, 정지 중 녹화, 불필요한 렌더 방지, 키보드 포커스 복귀와 네 가지 화면 크기를 검사합니다. 전철 외관과 객실은 `train.js`·`train-body.js`, 카메라 구도와 경계는 `camera.js`에서 조정할 수 있습니다.
