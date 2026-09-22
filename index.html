@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f3ed" />
+    <meta name="description" content="숲과 계곡을 달리는 기차, 커다란 구름과 흐르는 물. 애니메이션 같은 3D 기차 여행, 느린 궤도." />
+    <title>느린 궤도 — 계곡을 따라, 느리게</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <main id="app" data-time="day">
+      <div id="scene" aria-label="산과 호수 사이를 달리는 초록색 기차의 3D 풍경"></div>
+      <div class="paper-grain" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="느린 궤도 처음으로">
+          <svg class="brand-icon" aria-hidden="true"><use href="/icons.svg#rail" /></svg>
+          <span>느린 궤도<small>작은 세계, 느긋한 여행</small></span>
+        </a>
+        <div class="top-actions">
+          <div class="time-switch" role="group" aria-label="시간대">
+            <button type="button" data-time="day" aria-pressed="true">
+              <svg aria-hidden="true"><use href="/icons.svg#sun" /></svg><span>낮</span>
+            </button>
+            <button type="button" data-time="sunset" aria-pressed="false">
+              <svg aria-hidden="true"><use href="/icons.svg#sunset" /></svg><span>노을</span>
+            </button>
+            <button type="button" data-time="night" aria-pressed="false">
+              <svg aria-hidden="true"><use href="/icons.svg#moon" /></svg><span>밤</span>
+            </button>
+          </div>
+          <button class="icon-button sound-button" id="sound" type="button" aria-label="풍경 소리 켜기" aria-pressed="false" title="풍경 소리 켜기">
+            <svg aria-hidden="true"><use href="/icons.svg#sound-off" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="intro" aria-labelledby="title">
+        <div class="eyebrow"><span></span> 일상에서 조금 멀리</div>
+        <h1 id="title">계곡을 따라,<br />느리게.</h1>
+        <p>아무 데도 서두르지 않는 여행.</p>
+      </section>
+
+      <aside class="view-tools" aria-label="시점 조작">
+        <button class="icon-button" id="zoom-in" type="button" aria-label="확대" title="확대">
+          <svg aria-hidden="true"><use href="/icons.svg#plus" /></svg>
+        </button>
+        <button class="icon-button" id="zoom-out" type="button" aria-label="축소" title="축소">
+          <svg aria-hidden="true"><use href="/icons.svg#minus" /></svg>
+        </button>
+        <span class="tool-divider"></span>
+        <button class="icon-button" id="reset" type="button" aria-label="처음 시점으로" title="처음 시점으로">
+          <svg aria-hidden="true"><use href="/icons.svg#reset" /></svg>
+        </button>
+      </aside>
+
+      <div class="interaction-hint" aria-hidden="true">
+        <svg><use href="/icons.svg#orbit" /></svg> 드래그로 둘러보기 <span>·</span> 스크롤로 가까이
+      </div>
+
+      <footer class="bottom-bar">
+        <div class="route-info">
+          <div class="route-label"><span class="route-number">01</span><h2>푸른 계곡 순환선</h2></div>
+          <div class="route-line" aria-hidden="true"><span></span><i id="route-marker"></i><span></span></div>
+          <div class="route-stops"><span>숲속 작은 역</span><span>호수 건너, 다시</span></div>
+        </div>
+
+        <div class="transport" aria-label="열차 운행 조작">
+          <button class="play-button" id="play" type="button" aria-label="열차 정지" aria-pressed="false" title="열차 정지 · Space">
+            <svg aria-hidden="true"><use href="/icons.svg#pause" /></svg>
+          </button>
+          <div class="speed-control">
+            <label for="speed">운행 속도 <output id="speed-value" for="speed">1.0×</output></label>
+            <input id="speed" type="range" min="0.3" max="2" value="1" step="0.1" aria-label="열차 운행 속도" />
+          </div>
+          <span class="transport-divider"></span>
+          <button class="follow-button" id="follow" type="button" aria-pressed="false">
+            <svg aria-hidden="true"><use href="/icons.svg#train" /></svg><span>기차 따라가기</span>
+          </button>
+        </div>
+
+        <div class="export-tools">
+          <button class="save-button" id="record" type="button" aria-label="12초 영상 저장" aria-pressed="false">
+            <span class="record-dot" aria-hidden="true"></span><span class="record-label">영상 저장</span>
+          </button>
+          <button class="icon-button" id="save" type="button" aria-label="엽서 이미지 저장" title="엽서 이미지 저장">
+            <svg aria-hidden="true"><use href="/icons.svg#camera" /></svg>
+          </button>
+        </div>
+      </footer>
+
+      <div class="loading" id="loading" role="status"><span class="loading-track"></span><span>작은 여행을 준비하는 중</span></div>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+      <div class="error-screen" id="error" hidden>
+        <h2>풍경을 불러오지 못했어요.</h2><p>브라우저의 그래픽 가속을 켠 뒤 다시 열어 주세요.</p>
+        <button type="button" onclick="location.reload()">다시 불러오기</button>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
