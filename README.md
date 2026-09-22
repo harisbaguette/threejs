@@ -1,50 +1,12 @@
-# 느린 궤도
+# Three.js 작품 모음
 
-숲과 계곡 사이를 달리는 애니메이션풍 Three.js 기차 여행입니다. [사용자가 제공한 Chetan Ankola의 포스트](https://x.com/chetanankola/status/2101533321381695752)를 시각 참고로 삼아 새로 구현했습니다. 원본 코드나 에셋은 사용하지 않았습니다.
+각 폴더가 별도의 프로젝트입니다. 기존 Git 기록과 로컬 `graft` 자료는 루트에 유지합니다.
 
-## 실행
+두 번째 작품은 비가 갠 일본 해안역을 배경으로 합니다. [사용법](02-shiosai/README.md) · [샘플 영상](02-shiosai/exports/shiosai-preview.mp4) · [해질녘 사진](02-shiosai/exports/shiosai-sunset.png) · [푸른 밤 사진](02-shiosai/exports/shiosai-blue-hour.png)
 
-Node.js 22.12 이상에서:
+| 작품 | 폴더 | 로컬 실행 |
+|---|---|---|
+| 느린 궤도 — 애니메이션풍 계곡 열차 | `01-slow-rail/` | `npm run dev:01` → http://127.0.0.1:5173 |
+| 潮騒 — 비가 머문 역 | `02-shiosai/` | `npm run dev:02` → http://127.0.0.1:5174 |
 
-```sh
-npm install
-npm run dev
-```
-
-브라우저에서 http://127.0.0.1:5173 을 엽니다. `index.html`을 직접 더블클릭하는 대신 개발 서버를 사용합니다.
-
-## 조작
-
-- 드래그: 풍경 둘러보기. 스크롤 또는 +/−: 확대·축소.
-- 재생 버튼 또는 Space: 열차 출발·정지. 슬라이더: 속도.
-- 기차 따라가기: 이동하는 열차를 따라 카메라 이동. 원형 화살표: 시점 초기화.
-- 낮·노을·밤: 하늘, 빛, 물, 창문 조명 전환.
-- 소리 버튼: 합성 물소리·새소리·열차 저음 켜기. 자동 재생하지 않습니다.
-- 영상 저장: 12초간 화면을 녹화. 한 번 더 누르면 일찍 저장. 브라우저가 지원하면 MP4, 그 외에는 WebM. 영상에는 화면의 풍경만 담기며 소리는 포함하지 않습니다.
-- 카메라 버튼: 현재 풍경을 여백과 제목이 있는 PNG 엽서로 저장.
-
-모바일 터치와 모션 감소 설정을 지원합니다. WebGL 2와 그래픽 가속이 필요합니다. 그래픽 기능이 꺼진 브라우저에서는 안내 화면을 보여 줍니다.
-
-## 구성
-
-- `src/world.js`: 렌더러, 빛, 구름, 별, 새, 카메라와 애니메이션.
-- `src/terrain.js`: 절차적 계곡 지형, 물 셰이더, 숲, 바위, 철도, 아치교, 마을.
-- `src/models.js`: 열차와 건물 모델.
-- `src/main.js`: 조작 UI, PNG 및 영상 저장.
-- `src/journey.js`: 노선 거리, 객차 간격, 프레임에 독립적인 이동 계산.
-- `src/audio.js`: Web Audio로 만든 합성 풍경 소리.
-
-외부 3D 모델·텍스처·API 키 없이 실행됩니다. 실행 중 외부 서버에 사용자 데이터를 전송하지 않습니다.
-
-`exports/slow-rail-preview.mp4`는 낮에서 노을로 바뀌는 12초 샘플 영상이며, `exports/slow-rail-postcard.png`는 샘플 엽서입니다. 개발 서버를 켠 상태에서 `npm run export:preview`로 다시 만들 수 있습니다.
-
-## 검증과 배포 파일
-
-```sh
-npm run check
-npm test
-npm run test:e2e
-npm run build
-```
-
-브라우저 검증은 로컬 개발 서버가 실행 중이고 Google Chrome이 설치되어 있어야 합니다. 캡처와 저장 결과는 `test-results/`에 생성됩니다. `npm run build`로 생성되는 `dist/`는 정적 웹 호스팅에 올릴 수 있습니다. 외부 배포는 수행하지 않았습니다.
+루트에서 `npm run dev`를 실행하면 두 번째 작품을 엽니다. 개별 폴더에서도 `npm install`, `npm run dev`, `npm run build`를 사용할 수 있습니다.

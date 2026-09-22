@@ -1,0 +1,17 @@
+{
+  "name": "shiosai-after-the-rain",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5174",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4174",
+    "check": "node --check src/main.js && node --check src/world.js && node --check src/station.js && node --check src/train.js && node --check src/environment.js && node --check src/materials.js",
+    "test": "node --test tests/motion.test.js",
+    "test:e2e": "node tests/browser.mjs",
+    "export:preview": "node scripts/export-preview.mjs"
+  },
+  "dependencies": { "three": "0.186.0" },
+  "devDependencies": { "playwright": "1.58.2", "vite": "7.3.6" }
+}

@@ -1,22 +1,10 @@
 {
-  "name": "slow-rail",
-  "version": "1.0.0",
+  "name": "threejs-studies",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1",
-    "check": "node --check src/main.js && node --check src/world.js && node --check src/models.js && node --check src/terrain.js && node --check src/audio.js && node --check src/journey.js",
-    "test": "node --test tests/journey.test.js",
-    "test:e2e": "node tests/browser.mjs",
-    "export:preview": "node scripts/export-preview.mjs"
-  },
-  "dependencies": {
-    "three": "0.186.0"
-  },
-  "devDependencies": {
-    "playwright": "1.58.2",
-    "vite": "7.3.6"
+    "dev": "npm --prefix 02-shiosai run dev",
+    "dev:01": "npm --prefix 01-slow-rail run dev -- --port 5173",
+    "dev:02": "npm --prefix 02-shiosai run dev -- --port 5174",
+    "build": "npm --prefix 01-slow-rail run build && npm --prefix 02-shiosai run build"
   }
 }
