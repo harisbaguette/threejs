@@ -5,7 +5,7 @@ await mkdir('exports', { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
-  await page.goto('http://127.0.0.1:5174');
+  await page.goto('http://127.0.0.1:5174/station.html');
   await page.waitForSelector('[data-ready="true"]', { timeout: 90000 });
   await page.click('#play');
   await page.evaluate(() => { window.__shiosai.state.time = 0; });

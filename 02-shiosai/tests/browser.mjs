@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, stat } from 'node:fs/promises';
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
-const url = process.env.SHIOSAI_URL || 'http://127.0.0.1:5174';
+const url = process.env.SHIOSAI_URL || 'http://127.0.0.1:5174/station.html';
 const errors = [];
 await mkdir('test-results', { recursive: true });
 function watch(page) {

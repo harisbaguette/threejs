@@ -7,12 +7,19 @@
     "dev": "vite --host 127.0.0.1 --port 5174",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4174",
-    "check": "node --check src/main.js && node --check src/world.js && node --check src/station.js && node --check src/train.js && node --check src/train-body.js && node --check src/camera.js && node --check src/environment.js && node --check src/materials.js && node --check src/motion.js && node --check src/audio.js",
+    "check": "node --check src/main.js && node --check src/world.js && node --check src/station.js && node --check src/train.js && node --check src/train-body.js && node --check src/camera.js && node --check src/environment.js && node --check src/materials.js && node --check src/motion.js && node --check src/audio.js && node --check src/window/app.js && node --check src/window/scene.js && node --check src/window/shaders.js && node --check src/window/audio.js && node --check src/window/postcard.js && node --check src/window/cabin.js",
     "test": "node --test tests/*.test.js",
     "test:e2e": "node tests/browser.mjs",
     "test:review": "node tests/review.mjs",
-    "export:preview": "node scripts/export-preview.mjs"
+    "export:preview": "node scripts/export-preview.mjs",
+    "test:window": "node tests/window.mjs",
+    "export:window": "node scripts/export-window.mjs"
   },
-  "dependencies": { "three": "0.186.0" },
-  "devDependencies": { "playwright": "1.58.2", "vite": "7.3.6" }
+  "dependencies": {
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2",
+    "vite": "7.3.6"
+  }
 }

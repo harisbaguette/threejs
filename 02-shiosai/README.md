@@ -1,65 +1,61 @@
-# 潮騒 — 비가 머문 역
+# 潮騒 — 창가에 남은 시간
 
-비가 갠 일본의 작은 해안역을 떠올리며 만든 실사풍 Three.js 작품입니다. 젖은 승강장, 녹색 전철, 따뜻한 처마 조명과 바다가 한 장면에 담깁니다. 실제 역을 그대로 복제한 것이 아닌 가상의 장소입니다.
+비 오는 일본의 작은 해안역을 바라보며 잠시 머무는 창가 체험. 젖은 승강장의 따뜻한 빛, 흐르는 빗방울, 낮은 파도와 객실 소리, 그리고 나에게 남기는 한 장의 엽서.
 
-![해질녘의 시오사이 역](exports/shiosai-sunset.png)
+![시오사이 창가](exports/window-arrival.png)
 
 ## 실행
-
-이 폴더에서 다음 명령을 실행합니다. Node.js 20.19 이상 또는 22.12 이상이 필요합니다.
 
 ```sh
 npm install
 npm run dev
 ```
 
-브라우저에서 http://127.0.0.1:5174 를 엽니다. 상위 폴더에서는 `npm run dev:02`로 실행할 수 있습니다.
+http://127.0.0.1:5174 에서 **창가에 앉기**를 누른다. Node.js 20.19+ 또는 22.12+ 필요. 상위 프로젝트의 실행 설정에 관계없이 이 폴더에서 실행할 수 있다.
+
+## 창가에서
+
+- 창을 드래그해 김을 닦는다. 닦은 자국은 천천히 돌아온다. 키보드 C와 설정의 ‘창을 맑게 닦기’로도 사용할 수 있다.
+- **저녁의 여운 / 마지막 불빛**으로 시간대를 바꾼다. 전철은 정차한 풍경이다.
+- **소리**로 빗소리·파도·객실의 낮은 진동·드문 역 차임을 듣는다. 소리는 진입 버튼을 누른 뒤 켜진다. 설정에서 음량과 비를 조절할 수 있다.
+- **이 순간 간직하기**에서 한 줄을 적고 1800×1440 PNG 엽서를 저장한다. 글은 이 브라우저의 localStorage에만 보관하고 외부로 전송하지 않는다. 저장이 차단된 환경에서도 PNG 다운로드는 된다.
+- 설정의 **소리와 함께 12초 담기**로 H.264/AAC MP4 또는 WebM을 저장한다. 다시 눌러 일찍 마칠 수 있다. 현재 소리 설정이 녹음에 반영되므로 음소거 상태면 무음이다. 녹화 중 다른 탭으로 이동하면 그 시점까지 저장한다.
+- **H / Escape**로 조작 숨기기 / 표시. 캔버스에서 **Space**로 정지·재생, **방향키**로 작은 시점 이동.
+
+모션 감소 설정에서는 시점 추종과 풍경의 움직임을 끄고, 시간대를 즉시 전환한다. 이 설정이어도 진입 후 소리는 들을 수 있다. 정지 상태에서 변화가 없으면 렌더하지 않는다. 녹화는 사용자가 요청한 동안만 움직인다.
+
+## 구현 범위
+
+기본 창가는 **생성한 실사풍 이미지 + Three.js의 얕은 깊이 메시·3D 창틀 + 실시간 유리/수면 셰이더**를 합성한 2.5D 작품이다. 실제 장소를 촬영한 것이 아니며, 창밖을 모든 방향에서 돌아다닐 수 있는 실사 3D 월드는 아니다. 장면의 자연스러운 밀도를 확보하기 위해 이 매체를 선택했다.
+
+설정의 [3D 승강장 둘러보기](http://127.0.0.1:5174/station.html)는 앞서 만든 자유 시점 Three.js 장면이다. 승강장·해안선·열차 근접 구도, 움직이는 열차, PNG·영상 저장을 유지했다. 이 모드의 기존 영상 저장에는 소리가 없다.
+
+- `src/window/scene.js`: Three.js 렌더, 깊이 메시, 시차, 입력·김 닦기·정지.
+- `src/window/shaders.js`: 굴절과 빗방울, 김, 객실 반사, 수면.
+- `src/window/cabin.js`: 실제 3D 창틀·고무 패킹·금속 테두리·잠금장치.
+- `src/window/audio.js`: 외부 샘플 없는 자체 합성 환경음, 스테레오, 영상 음성 트랙.
+- `src/window/app.js`, `postcard.js`, `style.css`: UI·접근성·엽서·영상 저장.
+- `src/world.js` 이하 기존 파일: 자유 시점 승강장.
+
+이미지 생성 도구·최종 프롬프트·원본은 [artwork/PROVENANCE.md](artwork/PROVENANCE.md). 실행 이미지와 해시는 [sources.json](public/assets/window/sources.json). 이미지는 로컬 WebP이며 앱은 외부 CDN·분석·이미지 API를 호출하지 않는다.
+
+기존 승강장의 Poly Haven CC0 재질 출처는 [소재 목록](public/assets/sources.json)에 있다. 원본은 [Venice Sunset](https://polyhaven.com/a/venice_sunset), [Asphalt 02](https://polyhaven.com/a/asphalt_02), [Concrete Floor 02](https://polyhaven.com/a/concrete_floor_02), [Gravel Stones](https://polyhaven.com/a/gravel_stones), [Wood Planks](https://polyhaven.com/a/wood_planks).
+
+## 검증과 샘플
 
 ```sh
 npm run check
 npm test
+npm run test:window    # 개발 서버 + 로컬 Chrome
+npm run test:e2e       # 기존 승강장
 npm run build
+npm run preview       # http://127.0.0.1:4174
 ```
 
-`npm run preview`는 빌드 결과를 http://127.0.0.1:4174 에서 엽니다. `dist/`를 정적 호스팅의 루트에 배포할 수 있습니다.
+`dist/`를 정적 호스팅의 루트에 배포하면 창가와 승강장이 함께 작동한다. 서버 경로의 하위 디렉터리에 배포하려면 현재 절대 에셋 경로를 먼저 조정해야 한다.
 
-## 감상과 저장
+[창가 12초 영상](exports/window-preview.mp4) · [엽서 샘플](exports/window-postcard.png) · [검증 기록](WINDOW-REVIEW.md)
 
-- **승강장 / 해안선 / 가까이:** 세 가지 촬영 시점. 드래그로 자유롭게 회전하고 휠이나 핀치로 확대합니다.
-- **해질녘 / 푸른밤:** 하늘, 바다, 조명과 차창의 분위기를 전환합니다.
-- **재생 / 정지:** 열차·비·파도·구름의 시간을 함께 제어합니다. 정지 상태에서도 카메라와 시간대는 바꿀 수 있습니다.
-- **비 / 소리:** 빗줄기를 숨기거나 파도 분위기의 합성 환경음을 켭니다. 소리는 버튼을 누른 후에만 재생됩니다.
-- **사진 / 영상:** 조작 화면을 제외한 풍경을 PNG 또는 12초 영상으로 저장합니다. 녹화 중 영상 버튼을 다시 누르면 일찍 저장합니다. 지원 브라우저에서는 MP4, 그 외에는 WebM을 사용합니다. 영상에는 소리가 포함되지 않습니다.
-- **H / Escape:** 조작 화면 숨기기 / 다시 표시. 캔버스를 선택한 뒤 Space로 정지·재생, 방향키로 회전합니다.
+[기존 승강장 사진](exports/shiosai-sunset.png) · [기존 승강장 영상](exports/shiosai-preview.mp4) · [이전 자기비평](REVIEW.md)
 
-모션 감소 설정에서는 풍경이 정지된 상태로 시작합니다. 모바일에는 별도의 카메라 구도를 사용합니다. 사진·영상의 해상도는 현재 캔버스 크기를 따릅니다.
-
-정지 중 영상 저장을 누르면 촬영하는 동안 풍경을 재생하고, 촬영을 마친 뒤 이전 정지 상태로 돌아갑니다. 풍경과 조작이 모두 멈췄을 때는 추가 렌더를 하지 않습니다. 작은 가로 화면도 지원하며 카메라가 지면·전철·처마 안으로 들어가는 것을 제한합니다.
-
-## 샘플
-
-[해질녘 사진](exports/shiosai-sunset.png) · [푸른 밤 사진](exports/shiosai-blue-hour.png) · [12초 영상](exports/shiosai-preview.mp4)
-
-[첫 버전과 보완 버전 비교](exports/review.html) · [자기비평 및 보완 기록](REVIEW.md)
-
-개발 서버가 켜져 있을 때 `npm run export:preview`로 다시 만들 수 있습니다. 샘플 생성과 `npm run test:e2e`에는 로컬 Chrome이 필요합니다.
-
-## 구성과 소재
-
-`src/world.js`가 조명과 카메라, 후처리를 관리합니다. `station.js`는 역과 반사 바닥, `train.js`는 전철, `environment.js`는 바다·하늘·마을·식생·비, `motion.js`는 열차의 정차·출발·도착을 담당합니다. UI와 다운로드는 `main.js`에 있습니다.
-
-Three.js의 물리 기반 재질, HDR 환경 조명, 평면 반사, 톤 매핑과 약한 필름 그레인을 사용합니다. 실사풍 분위기를 목표로 한 실시간 3D 장면이며, 사진 측량 모델이나 경로 추적 렌더러를 사용한 작업은 아닙니다.
-
-Poly Haven의 다음 CC0 소재를 프로젝트에 함께 저장했습니다. 실행할 때 외부 CDN이나 API를 호출하지 않습니다.
-
-| 소재 | 사용처 |
-|---|---|
-| [Venice Sunset](https://polyhaven.com/a/venice_sunset) | HDR 조명과 재질의 환경 반사 |
-| [Asphalt 02](https://polyhaven.com/a/asphalt_02) | 지면·선로 주변과 젖은 바닥 |
-| [Concrete Floor 02](https://polyhaven.com/a/concrete_floor_02) | 승강장 콘크리트 |
-| [Gravel Stones](https://polyhaven.com/a/gravel_stones) | 선로의 자갈 바닥 |
-| [Wood Planks](https://polyhaven.com/a/wood_planks) | 벤치·침목·목조 주택 |
-
-파일별 원본 주소, 라이선스, SHA-256은 [sources.json](public/assets/sources.json)에 있습니다. 재다운로드는 `python3 scripts/fetch-assets.py`로 실행합니다. 모델·하늘·바다·간판·아이콘·환경음은 이 프로젝트의 코드로 구성했습니다.
-
-`npm run test:review`는 카메라 경계, 정지 중 녹화, 불필요한 렌더 방지, 키보드 포커스 복귀와 네 가지 화면 크기를 검사합니다. 전철 외관과 객실은 `train.js`·`train-body.js`, 카메라 구도와 경계는 `camera.js`에서 조정할 수 있습니다.
+`npm run export:window`로 새 창가 샘플, `npm run export:preview`로 기존 승강장 샘플을 다시 만든다. 유료 서비스로서의 결제 의향이나 방문자 반응을 측정한 것은 아니다.

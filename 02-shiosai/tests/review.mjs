@@ -10,7 +10,7 @@ async function open(viewport) {
   p.on('pageerror', e => errors.push(e.message));
   p.on('console', e => { if (e.type() === 'error') errors.push(e.text()); });
   p.on('response', r => { if (r.status() >= 400) errors.push(r.url()); });
-  await p.goto('http://127.0.0.1:5174');
+  await p.goto('http://127.0.0.1:5174/station.html');
   await p.waitForSelector('[data-ready="true"]', { timeout: 90000 });
   await p.waitForTimeout(1200);
   return p;

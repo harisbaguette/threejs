@@ -1,65 +1,178 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#101b20" />
-  <meta name="description" content="비가 오는 일본의 작은 해안역. 창가에 앉아 잠시 머무는, 시오사이." />
-  <title>潮騒 — 창가에 남은 시간</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preload" as="image" href="/assets/window/station.webp" />
-</head>
-<body>
-  <main id="experience" data-entered="false">
-    <div id="landscape" aria-label="비 오는 시오사이 역의 창가"></div>
-    <div class="edge-shade" aria-hidden="true"></div>
-    <header class="masthead chrome">
-      <a class="wordmark" href="/" aria-label="시오사이 처음으로"><span lang="ja">潮騒</span><span>SHIOSAI</span></a>
-      <div class="edition"><span class="edition-line"></span><span>어느 해안역의 창가</span></div>
-      <button id="menu-open" class="icon-button" aria-label="설정 열기" aria-haspopup="dialog"><svg aria-hidden="true"><use href="/window-icons.svg#menu" /></svg></button>
-    </header>
-    <section class="arrival" aria-labelledby="arrival-title">
-      <p class="overline"><span>SEAT 02</span><i></i><span>바다가 보이는 자리</span></p>
-      <h1 id="arrival-title">조금 더,<br />머물러도 돼.</h1>
-      <button id="enter" class="enter-button" disabled><span id="enter-label">풍경을 불러오는 중</span><svg aria-hidden="true"><use href="/window-icons.svg#arrow" /></svg></button>
-      <p class="sound-note"><svg aria-hidden="true"><use href="/window-icons.svg#headphones" /></svg>소리와 함께 머물러 보세요</p>
-    </section>
-    <div class="scene-caption chrome" aria-hidden="true"><span lang="ja">雨の日も、海はそこに。</span><i></i><span id="clock">17:42</span></div>
-    <footer class="dock chrome" aria-label="풍경 조작" inert>
-      <div class="listening-controls">
-        <button id="sound" class="icon-button" aria-label="소리 켜기" aria-pressed="false"><svg aria-hidden="true"><use href="/window-icons.svg#sound-off" /></svg></button>
-        <button id="pause" class="icon-button" aria-label="풍경 정지" aria-pressed="false"><svg aria-hidden="true"><use href="/window-icons.svg#pause" /></svg></button>
-        <span class="listening-label">잠시, 이곳에</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101b20" />
+    <meta
+      name="description"
+      content="비가 오는 일본의 작은 해안역. 창가에 앉아 잠시 머무는, 시오사이."
+    />
+    <title>潮騒 — 창가에 남은 시간</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="/assets/window/station.webp" />
+  </head>
+  <body>
+    <main id="experience" data-entered="false">
+      <div id="landscape" aria-label="비 오는 시오사이 역의 창가"></div>
+      <div class="edge-shade" aria-hidden="true"></div>
+      <header class="masthead chrome">
+        <a class="wordmark" href="/" aria-label="시오사이 처음으로"
+          ><span lang="ja">潮騒</span><span>SHIOSAI</span></a
+        >
+        <div class="edition">
+          <span class="edition-line"></span><span>어느 해안역의 창가</span>
+        </div>
+        <button
+          id="menu-open"
+          class="icon-button"
+          aria-label="설정 열기"
+          aria-haspopup="dialog"
+        >
+          <svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#menu" />
+          </svg>
+        </button>
+      </header>
+      <section class="arrival" aria-labelledby="arrival-title">
+        <p class="overline">
+          <span>SEAT 02</span><i></i><span>바다가 보이는 자리</span>
+        </p>
+        <h1 id="arrival-title">조금 더,<br />머물러도 돼.</h1>
+        <button id="enter" class="enter-button" disabled>
+          <span id="enter-label">풍경을 불러오는 중</span
+          ><svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#arrow" />
+          </svg>
+        </button>
+        <p class="sound-note">
+          <svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#headphones" /></svg
+          >소리와 함께 머물러 보세요
+        </p>
+      </section>
+      <div class="scene-caption chrome" aria-hidden="true">
+        <span lang="ja">雨の日も、海はそこに。</span><i></i
+        ><span id="clock">17:42</span>
       </div>
-      <div class="moments" role="group" aria-label="시간대">
-        <button data-moment="dusk" aria-pressed="true"><span>01</span>저녁의 여운</button><i></i>
-        <button data-moment="night" aria-pressed="false"><span>02</span>마지막 불빛</button>
+      <footer class="dock chrome" aria-label="풍경 조작" inert>
+        <div class="listening-controls">
+          <button
+            id="sound"
+            class="icon-button"
+            aria-label="소리 켜기"
+            aria-pressed="false"
+          >
+            <svg aria-hidden="true" data-src="self:diagram">
+              <use href="/window-icons.svg#sound-off" />
+            </svg>
+          </button>
+          <button
+            id="pause"
+            class="icon-button"
+            aria-label="풍경 정지"
+            aria-pressed="false"
+          >
+            <svg aria-hidden="true" data-src="self:diagram">
+              <use href="/window-icons.svg#pause" />
+            </svg>
+          </button>
+          <span class="listening-label">잠시, 이곳에</span>
+        </div>
+        <div class="moments" role="group" aria-label="시간대">
+          <button data-moment="dusk" aria-pressed="true">
+            <span>01</span>저녁의 여운</button
+          ><i></i>
+          <button data-moment="night" aria-pressed="false">
+            <span>02</span>마지막 불빛
+          </button>
+        </div>
+        <button id="postcard-open" class="memory-button">
+          <svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#camera" /></svg
+          ><span>이 순간 간직하기</span>
+        </button>
+      </footer>
+      <p id="gesture-hint" class="gesture-hint" hidden>
+        창을 문지르면, 바다가 조금 더 선명해져요.
+      </p>
+      <button id="restore" class="restore" hidden aria-label="조작 표시">
+        <svg aria-hidden="true" data-src="self:diagram">
+          <use href="/window-icons.svg#menu" />
+        </svg>
+      </button>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+      <dialog id="settings" aria-labelledby="settings-title">
+        <form method="dialog">
+          <button class="close-button icon-button" aria-label="설정 닫기">
+            <svg aria-hidden="true" data-src="self:diagram">
+              <use href="/window-icons.svg#close" />
+            </svg>
+          </button>
+        </form>
+        <p class="overline">YOUR WINDOW</p>
+        <h2 id="settings-title">머무는 방식</h2>
+        <label class="setting-row" for="rain"
+          ><span>창가의 비</span><input type="checkbox" id="rain" checked
+        /></label>
+        <label class="setting-row" for="volume"
+          ><span>소리 크기</span
+          ><input type="range" id="volume" min="0" max="100" value="55"
+        /></label>
+        <button id="clear-glass" class="setting-action">
+          창을 맑게 닦기<svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#arrow" />
+          </svg>
+        </button>
+        <button id="hide" class="setting-action">
+          풍경만 보기 <kbd>H</kbd>
+        </button>
+        <button id="record" class="setting-action" aria-pressed="false">
+          <span>소리와 함께 12초 담기</span
+          ><span class="record-dot" aria-hidden="true"></span>
+        </button>
+        <a class="station-link" href="/station.html"
+          >3D 승강장 둘러보기<svg aria-hidden="true" data-src="self:diagram">
+            <use href="/window-icons.svg#arrow" /></svg
+        ></a>
+      </dialog>
+      <dialog
+        id="postcard"
+        class="postcard-dialog"
+        aria-labelledby="postcard-title"
+      >
+        <form method="dialog">
+          <button class="close-button icon-button" aria-label="엽서 닫기">
+            <svg aria-hidden="true" data-src="self:diagram">
+              <use href="/window-icons.svg#close" />
+            </svg>
+          </button>
+        </form>
+        <h2 id="postcard-title">이 순간을, 나에게.</h2>
+        <div class="postcard-paper">
+          <img id="postcard-image" alt="지금 창가에서 바라본 풍경" />
+          <div class="postcard-meta">
+            <span lang="ja">潮騒</span><span id="postcard-date"></span>
+          </div>
+          <p id="postcard-line">오래 기억하고 싶은 저녁.</p>
+        </div>
+        <label class="sr-only" for="memory">엽서에 남길 한 줄</label>
+        <input
+          id="memory"
+          type="text"
+          maxlength="44"
+          placeholder="남기고 싶은 말 한 줄"
+          autocomplete="off"
+        />
+        <button id="postcard-save" class="solid-button">엽서 저장</button>
+        <p class="private-note">글은 내 브라우저에만 남아요.</p>
+      </dialog>
+      <div id="failure" class="failure" hidden role="alert">
+        <h2>풍경을 불러오지 못했어요.</h2>
+        <p id="failure-message">잠시 후 다시 열어 주세요.</p>
+        <button id="retry" class="solid-button">다시 불러오기</button>
       </div>
-      <button id="postcard-open" class="memory-button"><svg aria-hidden="true"><use href="/window-icons.svg#camera" /></svg><span>이 순간 간직하기</span></button>
-    </footer>
-    <p id="gesture-hint" class="gesture-hint" hidden>창을 문지르면, 바다가 조금 더 선명해져요.</p>
-    <button id="restore" class="restore" hidden aria-label="조작 표시"><svg aria-hidden="true"><use href="/window-icons.svg#menu" /></svg></button>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <dialog id="settings" aria-labelledby="settings-title">
-      <form method="dialog"><button class="close-button icon-button" aria-label="설정 닫기"><svg aria-hidden="true"><use href="/window-icons.svg#close" /></svg></button></form>
-      <p class="overline">YOUR WINDOW</p><h2 id="settings-title">머무는 방식</h2>
-      <label class="setting-row" for="rain"><span>창가의 비</span><input type="checkbox" id="rain" checked /></label>
-      <label class="setting-row" for="volume"><span>소리 크기</span><input type="range" id="volume" min="0" max="100" value="55" /></label>
-      <button id="clear-glass" class="setting-action">창을 맑게 닦기<svg aria-hidden="true"><use href="/window-icons.svg#arrow" /></svg></button>
-      <button id="hide" class="setting-action">풍경만 보기 <kbd>H</kbd></button>
-      <button id="record" class="setting-action" aria-pressed="false"><span>소리와 함께 12초 담기</span><span class="record-dot" aria-hidden="true"></span></button>
-      <a class="station-link" href="/station.html">3D 승강장 둘러보기<svg aria-hidden="true"><use href="/window-icons.svg#arrow" /></svg></a>
-    </dialog>
-    <dialog id="postcard" class="postcard-dialog" aria-labelledby="postcard-title">
-      <form method="dialog"><button class="close-button icon-button" aria-label="엽서 닫기"><svg aria-hidden="true"><use href="/window-icons.svg#close" /></svg></button></form>
-      <h2 id="postcard-title">이 순간을, 나에게.</h2>
-      <div class="postcard-paper"><img id="postcard-image" alt="지금 창가에서 바라본 풍경" /><div class="postcard-meta"><span lang="ja">潮騒</span><span id="postcard-date"></span></div><p id="postcard-line">오래 기억하고 싶은 저녁.</p></div>
-      <label class="sr-only" for="memory">엽서에 남길 한 줄</label>
-      <input id="memory" type="text" maxlength="44" placeholder="남기고 싶은 말 한 줄" autocomplete="off" />
-      <button id="postcard-save" class="solid-button">엽서 저장</button><p class="private-note">글은 내 브라우저에만 남아요.</p>
-    </dialog>
-    <div id="failure" class="failure" hidden role="alert"><h2>풍경을 불러오지 못했어요.</h2><p id="failure-message">잠시 후 다시 열어 주세요.</p><button id="retry" class="solid-button">다시 불러오기</button></div>
-  </main>
-  <script type="module" src="/src/window/app.js"></script>
-</body>
+    </main>
+    <script type="module" src="/src/window/app.js"></script>
+  </body>
 </html>

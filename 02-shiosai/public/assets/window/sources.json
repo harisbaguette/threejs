@@ -1,0 +1,20 @@
+{
+  "created": "2026-09-22",
+  "kind": "AI-generated fictional photographic plates",
+  "generator": "Built-in image_gen.imagegen",
+  "prompts": "../../../artwork/PROVENANCE.md",
+  "files": [
+    {
+      "file": "station.webp",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "1aad096080c3333404fdeacc536f3bd59ed66956d134199dc459d95eeddfca91"
+    },
+    {
+      "file": "station-night.webp",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "f40681bce790c3edf94fb403d621de0cbe1deba27e4970bd3e44ab57e12307c0"
+    }
+  ]
+}
