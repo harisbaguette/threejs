@@ -2,9 +2,11 @@
   "name": "threejs-studies",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix 02-shiosai run dev",
+    "dev": "npm --prefix 03-litoral run dev",
     "dev:01": "npm --prefix 01-slow-rail run dev -- --port 5173",
     "dev:02": "npm --prefix 02-shiosai run dev -- --port 5174",
-    "build": "npm --prefix 01-slow-rail run build && npm --prefix 02-shiosai run build"
+    "dev:03": "npm --prefix 03-litoral run dev",
+    "build:03": "npm --prefix 03-litoral run build",
+    "build": "npm --prefix 01-slow-rail run build && npm --prefix 02-shiosai run build && npm --prefix 03-litoral run build"
   }
 }

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1b2a2b" />
+    <meta
+      name="description"
+      content="비가 갠 저녁, 일본 작은 해안역에 머무는 시간. 실시간 3D로 만나는 시오사이."
+    />
+    <title>潮騒 — 비가 머문 역</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main id="app">
+      <div id="scene"></div>
+      <div class="shade" aria-hidden="true"></div>
+      <header class="topbar ui">
+        <a class="brand" href="/" aria-label="시오사이 처음으로"
+          ><span lang="ja">潮騒</span><i></i><small>비가 머문 역</small></a
+        >
+        <div class="top-right">
+          <div class="time-toggle" role="group" aria-label="시간대">
+            <button type="button" data-time="sunset" aria-pressed="true">
+              해질녘
+            </button>
+            <span aria-hidden="true">/</span>
+            <button type="button" data-time="night" aria-pressed="false">
+              푸른밤
+            </button>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="hide-ui"
+            aria-label="풍경만 보기"
+            title="풍경만 보기 · H"
+          >
+            <svg aria-hidden="true"><use href="/icons.svg#expand" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="intro ui" aria-labelledby="title">
+        <div class="chapter">
+          <span>02</span><i></i><span>일본, 어느 작은 해안역</span>
+        </div>
+        <h1 id="title">비가 머문 역.</h1>
+        <div class="intro-bottom">
+          <span class="status-dot"></span
+          ><span id="train-status" role="status">잠시 정차 중</span
+          ><span class="tiny-divider"></span><span id="scene-time">17:42</span>
+        </div>
+      </section>
+      <div class="vertical-note ui" aria-hidden="true">
+        <span lang="ja">雨上がり、海のそば。</span>
+      </div>
+
+      <footer class="bottom-bar ui">
+        <div class="playback">
+          <button
+            type="button"
+            class="icon-button play-button"
+            id="play"
+            aria-label="풍경 정지"
+            aria-pressed="false"
+          >
+            <svg aria-hidden="true"><use href="/icons.svg#pause" /></svg>
+          </button>
+          <button
+            type="button"
+            class="icon-button"
+            id="rain"
+            aria-label="비 끄기"
+            aria-pressed="true"
+            title="비 끄기"
+          >
+            <svg aria-hidden="true"><use href="/icons.svg#rain" /></svg>
+          </button>
+          <button
+            type="button"
+            class="icon-button"
+            id="sound"
+            aria-label="소리 켜기"
+            aria-pressed="false"
+            title="소리 켜기"
+          >
+            <svg aria-hidden="true"><use href="/icons.svg#sound-off" /></svg>
+          </button>
+        </div>
+        <div class="camera-controls" role="group" aria-label="촬영 시점">
+          <button type="button" data-camera="platform" aria-pressed="true">
+            승강장
+          </button>
+          <button type="button" data-camera="coast" aria-pressed="false">
+            해안선
+          </button>
+          <button type="button" data-camera="close" aria-pressed="false">
+            가까이
+          </button>
+        </div>
+        <div class="exports">
+          <button
+            type="button"
+            id="photo"
+            class="export-button"
+            aria-label="사진 저장"
+          >
+            <svg aria-hidden="true"><use href="/icons.svg#camera" /></svg
+            ><span>사진</span>
+          </button>
+          <button
+            type="button"
+            id="record"
+            class="export-button"
+            aria-label="12초 영상 저장"
+            aria-pressed="false"
+          >
+            <span class="record-circle" aria-hidden="true"></span
+            ><span>영상</span>
+          </button>
+        </div>
+      </footer>
+      <button type="button" id="show-ui" class="show-ui" hidden>
+        조작 표시 <kbd>H</kbd>
+      </button>
+      <div class="loading" id="loading" role="status">
+        <span lang="ja">潮騒</span><i></i>
+        <p>바다 곁에 잠시 머무는 시간</p>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div id="error" class="error-screen" hidden>
+        <h2>풍경을 불러오지 못했어요.</h2>
+        <p>브라우저의 그래픽 가속을 확인한 뒤 다시 열어 주세요.</p>
+        <button type="button" id="retry">다시 불러오기</button>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

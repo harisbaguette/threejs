@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#18332e" />
+    <meta name="description" content="LITORAL — 바다 곁 작은 마을을 걷는 3인칭 탐험 게임" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>LITORAL — 바다 곁을 걷다</title>
+  </head>
+  <body>
+    <main id="app" data-mode="loading">
+      <canvas id="world" aria-label="해안 마을 3D 게임 화면"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+      <header class="topbar">
+        <a class="wordmark" href="./" aria-label="Litoral 처음으로"><span class="brand-icon">≋</span> LITORAL</a>
+        <div class="top-right">
+          <span class="live-location"><i></i> PORTO SERENO <span class="time">17:42</span></span>
+          <button id="sound" class="icon-button" aria-label="자연 소리 켜기" aria-pressed="false"><svg><use href="/icons.svg#sound" /></svg></button>
+          <button id="character-open" class="icon-button in-game" aria-label="캐릭터 선택"><svg><use href="/icons.svg#person" /></svg></button>
+          <button id="pause" class="icon-button in-game" aria-label="일시정지"><svg><use href="/icons.svg#pause" /></svg></button>
+        </div>
+      </header>
+
+      <section id="intro" class="intro" aria-labelledby="game-title">
+        <div class="eyebrow"><span></span> A PLACE TO GET LOST</div>
+        <h1 id="game-title">바다 곁을<br /><em>걷다.</em></h1>
+        <p class="intro-copy">서두를 필요 없는, 당신만의 오후.</p>
+        <button id="intro-character" class="character-entry" disabled>
+          <span class="character-entry-icon"><svg><use href="/icons.svg#person" /></svg></span>
+          <span><small>함께 걸을 사람</small><strong id="selected-character">SOFIA · 여성</strong></span>
+          <span aria-hidden="true">↗</span>
+        </button>
+        <button id="start" class="primary-button" disabled><span id="start-label">마을을 준비하는 중</span><span aria-hidden="true">↗</span></button>
+        <div class="load-track"><div id="load-progress"></div></div>
+        <p class="intro-meta">3인칭 자유 탐험 <span>·</span> 네 곳의 풍경</p>
+      </section>
+
+      <aside id="objective" class="objective in-game">
+        <div class="eyebrow">작은 여행 <span id="progress-count">0 / 4</span></div>
+        <p id="objective-title">마을의 풍경을 모아 보세요</p>
+        <div class="progress-dots" id="progress-dots"><i></i><i></i><i></i><i></i></div>
+      </aside>
+      <div id="waypoint" class="waypoint in-game"><span>◇</span><small id="waypoint-label"></small></div>
+      <button id="interact" class="interact" hidden><kbd>E</kbd><span>풍경 기록하기</span></button>
+
+      <footer class="bottom-bar">
+        <div class="place-caption"><span class="eyebrow">ITALIAN RIVIERA · 01</span><span>포르토 세레노</span></div>
+        <div class="controls in-game"><span><kbd>W A S D</kbd> 이동</span><span><kbd>SHIFT</kbd> 달리기</span><span><kbd>SPACE</kbd> 점프</span><span>드래그 · 시점</span></div>
+        <div class="bottom-actions in-game">
+          <button id="photo" class="icon-button" aria-label="사진 저장 (P)"><svg><use href="/icons.svg#camera" /></svg></button>
+          <button id="map-toggle" class="icon-button" aria-label="여행 지도 열기 (M)"><svg><use href="/icons.svg#map" /></svg></button>
+        </div>
+      </footer>
+      <button id="minimap-button" class="minimap in-game" aria-label="여행 지도 열기"><canvas id="minimap" width="320" height="320"></canvas><span>N</span></button>
+      <div id="stamina" class="stamina in-game" aria-label="달리기 체력"><div></div></div>
+      <div id="crosshair" class="crosshair in-game" aria-hidden="true"></div>
+
+      <div id="touch-controls" class="in-game">
+        <div id="joystick" aria-label="이동 조이스틱"><div id="joystick-knob"></div></div>
+        <button id="touch-run" aria-label="달리기" aria-pressed="false">달리기</button>
+        <button id="touch-jump" aria-label="점프">↑</button>
+      </div>
+
+      <dialog id="pause-dialog" aria-labelledby="pause-title">
+        <form method="dialog"><button class="close-button" aria-label="닫기">×</button></form>
+        <span class="eyebrow">TAKE YOUR TIME</span><h2 id="pause-title">잠시 쉬어 가요.</h2>
+        <button id="resume" class="primary-button">계속 걷기 <span>→</span></button>
+        <button id="pause-character" class="text-button">캐릭터 바꾸기</button>
+        <div class="setting"><label for="quality">그래픽 품질</label><select id="quality"><option value="high">높음</option><option value="balanced" selected>균형</option><option value="low">낮음</option></select></div>
+        <div class="setting"><label for="sensitivity">시점 감도</label><input id="sensitivity" type="range" min="0.5" max="2" step="0.1" value="1" /></div>
+        <p class="help-text">WASD / 방향키 이동 · Shift 달리기 · Space 점프<br />드래그 시점 · 휠 줌 · E 기록 · M 지도 · P 사진 · Esc 일시정지</p>
+        <button id="reset-position" class="text-button">출발 지점으로 돌아가기</button>
+      </dialog>
+
+      <dialog id="character-dialog" class="character-dialog" aria-labelledby="character-title">
+        <form method="dialog"><button class="close-button" aria-label="캐릭터 선택 닫기">×</button></form>
+        <div class="character-sidebar">
+          <span class="eyebrow">YOUR AFTERNOON, YOUR STORY</span>
+          <h2 id="character-title">누구의 오후로<br />걸어 볼까요?</h2>
+          <div class="character-options" role="group" aria-label="캐릭터 선택">
+            <button data-character="female" aria-pressed="true"><span>01</span><strong>SOFIA<small>여성</small></strong><span class="selection-mark">✓</span></button>
+            <button data-character="male" aria-pressed="false"><span>02</span><strong>JOSH<small>남성</small></strong><span class="selection-mark">✓</span></button>
+          </div>
+          <p class="character-note">드래그해서 둘러보세요.</p>
+          <button id="character-confirm" class="primary-button">이 캐릭터로 걷기 <span>→</span></button>
+          <span id="character-status" role="status" aria-live="polite"></span>
+        </div>
+        <div class="character-stage">
+          <div class="portrait-switch" role="group" aria-label="미리보기 범위">
+            <button data-portrait="full" aria-pressed="true">전신</button>
+            <button data-portrait="face" aria-pressed="false">얼굴 확대</button>
+          </div>
+          <canvas id="avatar-preview" aria-label="선택한 캐릭터의 실시간 3D 미리보기"></canvas>
+          <span id="preview-name" class="preview-name">SOFIA</span>
+        </div>
+      </dialog>
+
+      <dialog id="map-dialog" class="map-dialog" aria-labelledby="map-title">
+        <form method="dialog"><button class="close-button" aria-label="지도 닫기">×</button></form>
+        <span class="eyebrow">YOUR LITTLE JOURNEY</span><h2 id="map-title">포르토 세레노</h2>
+        <canvas id="large-map" width="720" height="660" aria-label="마을 지도와 발견 장소"></canvas>
+        <div id="journal" class="journal"></div>
+      </dialog>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <div id="photo-flash" aria-hidden="true"></div>
+      <div id="error" role="alert" hidden><h2>마을을 열지 못했어요.</h2><p id="error-message"></p><button onclick="location.reload()">다시 시도</button></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
